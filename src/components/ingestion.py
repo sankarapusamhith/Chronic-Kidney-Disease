@@ -4,8 +4,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from src.exception import CustomException
 from src.logger import logging as lg
-from config import IngestionConfig
-
+from config import IngestionConfig,TransformationConfig
+from src.components.transformation import Transformation
 
 class Ingestion:
     def __init__(self):
@@ -39,5 +39,8 @@ class Ingestion:
 
 if __name__=="__main__":
     obj=Ingestion()
-    obj.initiate_data_ingestion()
-    lg.info("completed the data ingestion method ")
+    train_data,test_data=obj.initiate_data_ingestion()
+
+    data_transformation=Transformation()
+    data_transformation.initiate_data_transformation(train_data,test_data)
+
