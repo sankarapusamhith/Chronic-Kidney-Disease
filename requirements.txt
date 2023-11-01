@@ -1,11 +1,11 @@
-numpy
-pandas
-matplotlib
-seaborn
-scikit-learn
-dill
-catboost
-xgboost
-streamlit
-selenium
+numpy==1.26.1
+pandas==2.1.2
+matplotlib==3.8.0
+seaborn==0.13.0
+scikit-learn==1.3.2
+dill==0.3.7
+catboost==1.2.2
+xgboost==2.0.1
+streamlit==1.28.0
+selenium==4.14.0
 -e .
