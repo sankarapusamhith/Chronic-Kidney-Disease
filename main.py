@@ -1,11 +1,15 @@
+import os
+os.environ['DISPLAY'] = ':0'
+os.environ['XAUTHORITY']='/run/user/1000/gdm/Xauthority'
 import streamlit as st
 import pandas as pd
 from src.pipeline.predict import PredictPipeline
-import pyautogui
 import time
-import os
-os.environ['DISPLAY'] = ':0'
-
+import pyautogui
+import sys
+from unittest import mock
+ 
+sys.modules["pyautogui"] = mock.MagicMock()
 
 def add_sidebar():
   st.sidebar.header("Enter patient health info")
