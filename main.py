@@ -45,7 +45,7 @@ def main():
             else :
                st.success("Person is free of chronic Kidney disease")
                
-            st.write("Probability of having disease: ", results[0])
+            #st.write("Probability of having disease: ", results[0])
             st.write("")
             st.write("")
             st.write("")
