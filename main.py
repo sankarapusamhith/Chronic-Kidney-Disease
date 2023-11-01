@@ -1,5 +1,3 @@
-import pickle
-import numpy as np
 import streamlit as st
 import pandas as pd
 from src.pipeline.predict import PredictPipeline
@@ -22,7 +20,10 @@ def add_sidebar():
     
       submitted = st.form_submit_button("Submit")
       if submitted:
-        return input_dict
+        if "" in list(input_dict.values()):
+           st.error("Enter all details in order to submit form")
+        else:
+          return input_dict
 
 def main():
     st.set_page_config(
@@ -31,14 +32,19 @@ def main():
     initial_sidebar_state="expanded"
     )
   
-    inp=add_sidebar()
+    features=add_sidebar()
   
     with st.container():
         st.title("Chronic Kidney Disease Predictor")
 
-        if inp:
+        if features:
             predict_pipeline=PredictPipeline()
-            results=predict_pipeline.predict(pd.DataFrame(inp,index=[0]))
+            results=predict_pipeline.predict(pd.DataFrame(features,index=[0]))
+            if results[0]>0.5:
+               st.error("Person has chronic Kidney disease")
+            else :
+               st.success("Person is free of chronic Kidney disease")
+               
             st.write("Probability of having disease: ", results[0])
             st.write("")
             st.write("")
@@ -49,7 +55,7 @@ def main():
             st.write("This app can assist medical professionals in making a diagnosis, but should not be used as a substitute for a professional diagnosis.")
 
         else:
-           st.write("submit the form with all details to get the result")
+           st.warning("To obtain the result, fill out the form completely.")
 
 if __name__ == '__main__':
   main()
