@@ -17,7 +17,7 @@ def add_sidebar():
     with st.form("my_form",clear_on_submit=True):
       for i in data.columns:
         if data[i].dtype=='float64':
-          input_dict[i]=st.text_input(i)
+          input_dict[i]=st.number_input(i,value=None)
         if data[i].dtype=='object':
           input_dict[i]=st.radio(i,list(data[i].value_counts().keys()),index=None)
       submitted = st.form_submit_button("Submit")
