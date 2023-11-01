@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from src.pipeline.predict import PredictPipeline
 from selenium import webdriver
+import pyautogui
 import time
 
 
@@ -61,11 +62,9 @@ def main():
             st.button('Click', on_click=click_button)
 
             if st.session_state.clicked:
-              driver = webdriver.Firefox()
-              driver.get("URL")
-
-              time.sleep(1)
-              driver.refresh()
+              for i in range(1):
+                time.sleep(1)
+                pyautogui.hotkey('f5')
 
             st.write("")
             st.write("")
