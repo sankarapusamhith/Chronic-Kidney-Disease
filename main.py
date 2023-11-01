@@ -5,10 +5,8 @@ import pandas as pd
 from src.pipeline.predict import PredictPipeline
 import time
 import pyautogui
-import sys
-from unittest import mock
- 
-sys.modules["pyautogui"] = mock.MagicMock()
+
+
 
 def add_sidebar():
   st.sidebar.header("Enter patient health info")
