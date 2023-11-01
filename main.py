@@ -1,11 +1,8 @@
-import os
-os.environ['DISPLAY'] = ':0'
 import streamlit as st
 import pandas as pd
 from src.pipeline.predict import PredictPipeline
+from selenium import webdriver
 import time
-import pyautogui
-
 
 
 def add_sidebar():
@@ -64,9 +61,11 @@ def main():
             st.button('Click', on_click=click_button)
 
             if st.session_state.clicked:
-              for i in range(1):
-                time.sleep(1)
-                pyautogui.hotkey('f5')
+              driver = webdriver.Firefox()
+              driver.get("URL")
+
+              time.sleep(1)
+              driver.refresh()
 
             st.write("")
             st.write("")
