@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 from src.pipeline.predict import PredictPipeline
+from selenium import webdriver
+import time
+
 
 def add_sidebar():
   st.sidebar.header("Enter patient health info")
@@ -45,7 +48,25 @@ def main():
             else :
                st.success("Person is free of chronic Kidney disease")
                
+            st.write("")
+            st.write("")
             #st.write("Probability of having disease: ", results[0])
+            if 'clicked' not in st.session_state:
+              st.session_state.clicked = False
+
+            def click_button():
+              st.session_state.clicked = True
+
+            st.write("Want to submit another response ?")
+            st.button('Click', on_click=click_button)
+
+            if st.session_state.clicked:
+              driver = webdriver.Firefox()
+              driver.get("URL")
+
+              time.sleep(1)
+              driver.refresh()
+
             st.write("")
             st.write("")
             st.write("")
