@@ -3,6 +3,8 @@ import pandas as pd
 from src.pipeline.predict import PredictPipeline
 import pyautogui
 import time
+import os
+os.environ['DISPLAY'] = ':0'
 
 
 def add_sidebar():
