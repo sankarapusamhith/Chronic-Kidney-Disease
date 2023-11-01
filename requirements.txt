@@ -7,5 +7,5 @@ dill
 catboost
 xgboost
 streamlit
-pyautogui
+selenium
 -e .
