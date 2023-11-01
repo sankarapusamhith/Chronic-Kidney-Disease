@@ -19,8 +19,7 @@ def add_sidebar():
         if data[i].dtype=='float64':
           input_dict[i]=st.text_input(i)
         if data[i].dtype=='object':
-          input_dict[i]=st.radio(i,list(data[i].value_counts().keys()))
-    
+          input_dict[i]=st.radio(i,list(data[i].value_counts().keys()),index=None)
       submitted = st.form_submit_button("Submit")
       if submitted:
         if "" in list(input_dict.values()):
@@ -44,13 +43,13 @@ def main():
             predict_pipeline=PredictPipeline()
             results=predict_pipeline.predict(pd.DataFrame(features,index=[0]))
             if results[0]>0.5:
-               st.error("Person has chronic Kidney disease")
+               st.error("Person may have chronic Kidney disease")
             else :
-               st.success("Person is free of chronic Kidney disease")
+               st.success("Person is most likely clear of chronic Kidney disease")
                
             st.write("")
             st.write("")
-            #st.write("Probability of having disease: ", results[0])
+            
             if 'clicked' not in st.session_state:
               st.session_state.clicked = False
 
@@ -61,11 +60,8 @@ def main():
             st.button('Click', on_click=click_button)
 
             if st.session_state.clicked:
-              driver = webdriver.Firefox()
-              driver.get("URL")
-
-              time.sleep(1)
-              driver.refresh()
+              driver = webdriver.Chrome()
+              driver.get(driver.getCurrentUrl());
 
             st.write("")
             st.write("")
