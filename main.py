@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from src.pipeline.predict import PredictPipeline
-from selenium import webdriver
 import pyautogui
 import time
 
